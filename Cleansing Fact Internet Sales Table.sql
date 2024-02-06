@@ -1,0 +1,31 @@
+-- Cleansing fact Internet Sales Table 
+SELECT
+       [ProductKey]
+      ,[OrderDateKey]
+      ,[DueDateKey]
+      ,[ShipDateKey]
+      ,[CustomerKey]
+      --,[PromotionKey]
+     -- ,[CurrencyKey]
+      --,[SalesTerritoryKey]
+      ,[SalesOrderNumber]
+      --,[SalesOrderLineNumber]
+     -- ,[RevisionNumber]
+     -- ,[OrderQuantity]
+      --,[UnitPrice]
+     -- ,[ExtendedAmount]
+      --,[UnitPriceDiscountPct]
+     ---- ,[DiscountAmount]
+     -- ,[ProductStandardCost]
+     -- ,[TotalProductCost]
+      ,[SalesAmount]
+      /*,[TaxAmt]
+      ,[Freight]
+      ,[CarrierTrackingNumber]
+      ,[CustomerPONumber]
+      ,[OrderDate]
+      ,[DueDate]
+      ,[ShipDate]*/
+  FROM [AdventureWorksDW2019].[dbo].[FactInternetSales]
+  WHERE LEFT (OrderDateKey, 4) >= YEAR(GETDATE()) -4   -- Extracting the exact year which was requested by the sales manager. This will automatically increment the year once it is movedon to the next year
+  ORDER BY OrderDateKey ASC
